@@ -1,0 +1,14 @@
+<hr>
+
+<div id="monster_drop">
+  <h2>Combat Grid</h2>
+  <div style="clear:both;"></div>
+</div>
+
+<% character_id = (!@record )  ? params[:character_id] : @record.id.to_s %>
+<%= drop_receiving_element "monster_drop", 
+      :url => { :action => "add_monster", :character_id => character_id },
+      :accept => "monster_handle", 
+      :hoverclass => "item_drop_hover",
+      :loading => "Element.show('indicator')",
+      :complete => "Element.hide('indicator'); Element.hide(element);" %>

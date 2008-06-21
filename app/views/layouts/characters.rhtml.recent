@@ -1,0 +1,56 @@
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <title>Characters</title>
+  <%= stylesheet_link_tag 'custom', :media => 'all' %>
+  <%= javascript_include_tag :defaults %>
+  <%= active_scaffold_includes %>
+</head>
+<body>
+
+<div id="tools_container">
+  <span><a href="#" onclick="new Effect.toggle('books');"><img src="/images/books.png" width=34 height=40 /></a></span>
+  <span><a href="#" onclick="new Effect.toggle('monsters');"><img src="/images/monsters.png" width=34 height=40 /></a></span>
+  <span><a href="#" onclick="new Effect.toggle('treasure');"><img src="/images/items.gif" width=34 height=40 /></a></span>
+  <span><a href="#" onclick="new Effect.toggle('dice_roller');"><img src="/images/Icosahedron.gif" width=40 height=40 /></a></span>
+</div>
+
+
+<div id="dice_roller" style="display:none;">
+  <div class="close_bar"><h2>Dice</h2><p onclick="new Effect.toggle('dice_roller');">[X]</p></div>
+  <iframe src ="/files/dice/dice.htm" width="520" height="400" scrolling="no"></iframe>
+</div><script> new Draggable('dice_roller'); </script>
+
+
+<div id="books" style="display:none;">
+  <div class="close_bar"><h2>Books</h2><p onclick="new Effect.toggle('books');">[X]</p></div>
+  <ul>
+  <li> <span>Players Handbooks<br/><a href="/files/PH_1.pdf"><img src="/images/PH.png" ></a><a href="/files/PH_2.pdf"><img src="/images/PH2.png" ></a></span></li>
+  <li> <span>Dungeon Masters Guides<br/><a href="/files/DMG_1.pdf"><img src="/images/DMG.png" ></a><a href="/files/DMG_2.pdf"><img src="/images/DMG2.png" ></a></span> </li> 
+  <li> <span>Monster Manuals<br/><a href="/files/MM_1.pdf"><img src="/images/MM.png" ></a><a href="/files/MM_2.pdf"><img src="/images/MM2.png" ></a><a href="/files/MM_3.pdf"><img src="/images/MM3.png" ></a></span></li> 
+  </ul>
+</div><script> new Draggable('books'); </script>
+
+
+<div id="scratch" style="display:none;">
+  <div class="close_bar"><h2>Scratch</h2><p onclick="new Effect.toggle('scratch');">[X]</p></div>
+  <textarea></textarea>
+</div><script> new Draggable('scratch'); </script>
+
+<div id="treasure" style="display:none;">
+  <div class="close_bar"><h2>Treasure</h2><p onclick="new Effect.toggle('treasure');">[X]</p></div>
+  <%= render_component :controller => '/items', :action => 'list' %>
+</div><script> new Draggable('treasure'); </script>
+
+<div id="monsters" style="display:none;">
+  <div class="close_bar"><h2>Monsters</h2><p onclick="new Effect.toggle('monsters');">[X]</p></div>
+  <%= render_component :controller => '/monsters', :action => 'list' %>
+</div>
+
+<%= @content_for_layout %>
+
+<div id="footer_text">420 minus 60&deg;, a skunk works project, Shannon McPherson '07</div>
+</body>
+</html>

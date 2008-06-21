@@ -1,0 +1,203 @@
+<% url_options = params_for(:action => :update) -%>
+<h4 id="character_title_heading"><%= @record.to_label.nil? ? active_scaffold_config.update.label : "#{@record.character_name}, #{@record.level.ordinalize} level #{@record.race} #{@record.class_type} " %></h4>
+<% if request.xhr? -%>
+  <div id="<%= element_messages_id(:action => :update) %>" class="messages-container"><%= error_messages_for :record %></div>
+<% else -%>
+  <%= render :partial => 'form_messages' %>
+<% end -%>
+
+<fieldset>
+<div class="character_form row">
+<!--[form:character]-->
+
+
+<div class="domtab">
+  <ul class="domtabs">
+    <li><a href="#character">Character</a></li>
+    <li><a href="#combat">Combat</a></li>
+    <li><a href="#items">Items</a></li>
+  </ul>
+
+
+  <div>
+    <h2><a name="character" id="character"></a></h2>
+    <div id="abilities_container" style="width:10em;">
+      <h2>Character</h2>
+      <table>
+        <tr><td class='title'>Race</td><td><%= @record.race %></td></tr>
+        <tr><td class='title'>Class</td><td><%= @record.class_type %></td></tr>
+        <tr><td class='title'>Weight</td><td><%= @record.weight %></td></tr>
+        <tr><td class='title'>Height</td><td><%= @record.height  %></td></tr>
+        <tr><td class='title'>Speed</td><td><%= text_field 'record', 'speed', {:style => "width:5em;"}  %></td></tr>  
+      </table>
+    </div>
+    <div id="abilities_container" style="width:14em;">
+      <h2>Attributes</h2>
+      <table>
+      <tr><th>Attribute</th>                  <th>Score</th>                                         <th>Mod.</th></tr>
+      <tr><td class='title'>Strength</td>     <td><%= text_field 'record', 'strength' %></td>     <td><%= @record.strength_mod %></td> </tr>
+      <tr><td class='title'>Dexterity</td>    <td><%= text_field 'record', 'dexterity' %></td>    <td><%= @record.dexterity_mod %></td> </tr>
+      <tr><td class='title'>Constitution</td> <td><%= text_field 'record', 'constitution' %></td> <td><%= @record.constitution_mod %></td> </tr>
+      <tr><td class='title'>Intelligence</td> <td><%= text_field 'record', 'intelligence' %></td> <td><%= @record.intelligence_mod %></td> </tr>
+      <tr><td class='title'>Wisdom</td>       <td><%= text_field 'record', 'wisdom' %></td>       <td><%= @record.wisdom_mod %></td> </tr>
+      <tr><td class='title'>Charisma</td>     <td><%= text_field 'record', 'charisma' %></td>     <td><%= @record.charisma_mod %></td> </tr>
+      </table>
+    </div>
+    <div id="abilities_container" class="experience" style="width:13em;">
+      <h2>Experience (<%= ((@record.xp.to_f / @record.xp_levelup.to_f)*100).to_i %>%)</h2>
+      <table>
+      <tr><td class='title'>Level</td>       <td><%= @record.level  %></td>     </tr>
+      <tr><td class='title'>Next Level</td>  <td><%= @record.xp_levelup  %></td> </tr>
+      <tr><td class="total" align=right>Total XP</td>    <td><%= text_field 'record', 'xp', {:style => "width:5em;", :class=>"total"}  %></td>    </tr>
+      </table>
+    </div>
+    <div id="abilities_container" class="money" style="width:14em;">
+      <h2>Money</h2>
+      <table>
+      <tr><th>Type</th>                   <th>Count</th>                                         </tr>
+      <tr><td class='title'>Copper</td>   <td><%= text_field 'record', 'money_cp', {:style => "width:5em;"} %></td>     </tr>
+      <tr><td class='title'>Silver</td>   <td><%= text_field 'record', 'money_sp', {:style => "width:5em;"}  %></td>    </tr>
+      <tr><td class='title'>Gold</td>     <td><%= text_field 'record', 'money_gp', {:style => "width:5em;"}  %></td> </tr>
+      <tr><td class='title'>Platinum</td> <td><%= text_field 'record', 'money_pp', {:style => "width:5em;"}  %></td> </tr>
+      <tr><td class="total" align='right'>Total Money:</td>   <td class="total">~<%= @record.money_total %>gp</td> </tr>  
+      </table>
+    </div> 
+    <div class="seperator"></div>
+  </div>
+  
+  
+  <div>
+    <h2><a name="combat" id="combat"></a></h2>
+    <div id="abilities_container" id="armor" style="width:10em;">
+      <h2>Armor</h2>
+      <table>
+      <tr><th>Type</th>                   <th>Value</th> </tr>
+      <tr><td class='title'>Armor</td>    <td><%= text_field 'record', 'ac_armor', {:style => "width:2em;"} %></td> </tr>
+      <tr><td class='title'>Shield</td>   <td><%= text_field 'record', 'ac_shield', {:style => "width:2em;"} %></td> </tr>
+      <tr><td class='title'>Size</td>     <td><%= @record.size_mod %></td> </tr>
+      <tr><td class='title'>DEX Mod</td>  <td><%= @record.dexterity_mod %></td> </tr>
+      <tr><td class='title'>Base</td>     <td>10</td> </tr>
+      <tr><td class='title'>Touch</td>    <td><%= @record.ac_touch %></td> </tr>
+      <tr><td class='title'>Flat-footed</td> <td><%= @record.ac_flatfooted %></td> </tr>
+      <tr><td class="total" align='right'>Total AC:</td>   <td class="total"><%= @record.ac_total %></td> </tr>  
+      </table>
+    </div>
+    <div id="abilities_container" class="hit_points" style="width:11em;">
+      <h2>Hit Points (<%= ((@record.hp.to_f / @record.hp_max.to_f)*100).to_i %>%)</h2>
+      <table>
+      <tr><td class='title'>Max</td>   <td><%= text_field 'record', 'hp_max', {:style => "width:4em;"} %></td>     </tr>
+      <tr><td class='title'>Current</td>   <td><%= text_field 'record', 'hp', {:style => "width:4em;", :class=>"total"} %></td>    </tr>
+      </table>
+    </div> 
+    <div id="abilities_container" style="width:11em;">
+      <h2>Attack</h2>
+      <table>
+      <tr><th>Type</th>                   <th>Value</th> </tr>
+      <tr><td class='title'>Base</td>     <td><%= @record.attack_base %></td> </tr>
+      </table>
+    </div>  
+    <div id="abilities_container" style="width:11em;">
+      <h2>Initiative</h2>
+      <table>
+      <tr><th>Type</th>                   <th>Value</th> </tr>
+      <tr><td class='title'>DEX Mod</td>  <td><%= @record.dexterity_mod %></td> </tr>
+      <tr><td class='title'>Misc Mod</td> <td><%= text_field 'record', 'initiative_mod', {:style => "width:2em;"} %></td> </tr>
+      <tr><td class="total" align='right'>Total Bonus:</td>   <td class="total"><%= @record.initiative_total %></td> </tr>  
+      </table>
+    </div>
+    <div id="abilities_container" style="width:20em;">
+      <h2>Saving Throws</h2>
+      <table>
+      <tr><th>&nbsp;</th><th>Base</th><th>Ability</th><th>Misc Mod</th><th class="total">Total</th></tr>
+      <tr>
+        <td class='title'>Fortitude <br /> <span class="small">constitution</span></td>
+        <td><%= @record.fortitude %></td>
+        <td><%= @record.constitution_mod %></td>
+        <td><%= text_field 'record', 'fortitude_mod', {:style => "width:2em;"} %></td>
+        <td class="total"><%= @record.fortitude_total %></td>
+      </tr>
+      <tr>
+        <td class='title'>Reflex  <br /> <span class="small">dexterity</span></td>
+        <td><%= @record.reflex %></td>
+        <td><%= @record.dexterity_mod %></td>
+        <td><%= text_field 'record', 'reflex_mod', {:style => "width:2em;"} %></td>
+        <td class="total"><%= @record.reflex_total %></td>
+      </tr>
+      <tr>
+        <td class='title'>Will  <br /> <span class="small">wisdom</span></td>
+        <td><%= @record.will %></td>
+        <td><%= @record.wisdom_mod %></td>
+        <td><%= text_field 'record', 'will_mod', {:style => "width:2em;"} %></td>
+        <td class="total"><%= @record.will_total %></td>
+      </tr>
+      </table>
+    </div>
+    <!-- DRAG DROP AREA FOR MONSTERS -->
+    <div class="seperator"></div>
+    <%= render :partial => 'combat_grid' %>
+    <%= render :active_scaffold => 'character_monsters' %>
+    <!-- END DRAG DROP AREA FOR MONSTERS -->
+    <div class="seperator"></div>
+  </div>
+  
+  
+  <div>
+    <h2><a name="items" id="items"></a></h2>
+    <!-- DRAG DROP AREA FOR ITEMS  -->
+    <%= render :partial => 'add_items' %>
+    <%= render :active_scaffold => 'character_item', :constraints => { :character_id => @record.id } %>
+    <!-- END DRAG DROP AREA -->
+    <div id="abilities_container" style="width:95%;">
+      <h2>Notes</h2>
+      <%= text_area  'record', 'notes', {:style => "width:100%; height:10em; font-size:.9em;"}  %>
+    </div>
+    <div id="abilities_container" style="width:14em;">
+      <h2>Skills</h2>
+    </div>
+    <div id="abilities_container" style="width:95%;">
+      <h2>Progress Log</h2>
+      <%
+      file = "log/characters/"+@record.id.to_s+".log"
+      log = ""
+      if (File.file?(file))
+        f = File.open(file)
+        begin
+            while (line = f.readline)
+                log = line + "<br />" + log
+            end
+        rescue EOFError
+            f.close
+        end
+      end
+      %><%= log %>
+    </div>
+  <div class="seperator"></div>
+  </div>
+
+</div><!--[endof:domtab]-->
+</div><!--[eoform:character]-->
+</fieldset>
+
+<script type="text/javascript">
+  new Ajax.InPlaceEditor('record_speed', '/characters/update_character_inline', {paramName:"speed", hiddenValue:"<%= @record.id %>"});
+  new Ajax.InPlaceEditor('record_hp_max', '/characters/update_character_inline', {paramName:"hp_max", hiddenValue:"<%= @record.id %>"});
+  new Ajax.InPlaceEditor('record_hp', '/characters/update_character_inline', {paramName:"hp", hiddenValue:"<%= @record.id %>"});
+  new Ajax.InPlaceEditor('record_xp', '/characters/update_character_inline', {paramName:"xp", hiddenValue:"<%= @record.id %>"});
+  new Ajax.InPlaceEditor('record_money_cp', '/characters/update_character_inline', {paramName:"money_cp", hiddenValue:"<%= @record.id %>"});
+  new Ajax.InPlaceEditor('record_money_sp', '/characters/update_character_inline', {paramName:"money_sp", hiddenValue:"<%= @record.id %>"});
+  new Ajax.InPlaceEditor('record_money_gp', '/characters/update_character_inline', {paramName:"money_gp", hiddenValue:"<%= @record.id %>"});
+  new Ajax.InPlaceEditor('record_money_pp', '/characters/update_character_inline', {paramName:"money_pp", hiddenValue:"<%= @record.id %>"});
+  new Ajax.InPlaceEditor('record_fortitude_mod', '/characters/update_character_inline', {paramName:"fortitude_mod", hiddenValue:"<%= @record.id %>"});
+  new Ajax.InPlaceEditor('record_reflex_mod', '/characters/update_character_inline', {paramName:"reflex_mod", hiddenValue:"<%= @record.id %>"});
+  new Ajax.InPlaceEditor('record_will_mod', '/characters/update_character_inline', {paramName:"will_mod", hiddenValue:"<%= @record.id %>"});
+  new Ajax.InPlaceEditor('record_initiative_mod', '/characters/update_character_inline', {paramName:"initiative_mod", hiddenValue:"<%= @record.id %>"});
+  new Ajax.InPlaceEditor('record_ac_armor', '/characters/update_character_inline', {paramName:"ac_armor", hiddenValue:"<%= @record.id %>"});
+  new Ajax.InPlaceEditor('record_ac_shield', '/characters/update_character_inline', {paramName:"ac_shield", hiddenValue:"<%= @record.id %>"});
+  new Ajax.InPlaceEditor('record_strength', '/characters/update_character_inline', {paramName:"strength", hiddenValue:"<%= @record.id %>"});
+  new Ajax.InPlaceEditor('record_dexterity', '/characters/update_character_inline', {paramName:"dexterity", hiddenValue:"<%= @record.id %>"});
+  new Ajax.InPlaceEditor('record_constitution', '/characters/update_character_inline', {paramName:"constitution", hiddenValue:"<%= @record.id %>"});
+  new Ajax.InPlaceEditor('record_wisdom', '/characters/update_character_inline', {paramName:"wisdom", hiddenValue:"<%= @record.id %>"});
+  new Ajax.InPlaceEditor('record_intelligence', '/characters/update_character_inline', {paramName:"intelligence", hiddenValue:"<%= @record.id %>"});
+  new Ajax.InPlaceEditor('record_charisma', '/characters/update_character_inline', {paramName:"charisma", hiddenValue:"<%= @record.id %>"});
+  new Ajax.InPlaceEditor('record_notes', '/characters/update_character_inline', {rows:20, okButton:true, paramName:"notes", hiddenValue:"<%= @record.id %>"});
+</script>

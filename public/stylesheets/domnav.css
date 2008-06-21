@@ -1,0 +1,65 @@
+
+    ul.domtabs{
+      float:left;
+      width:95%;
+      list-style-type:none;
+      
+    }
+    ul.domtabs li{
+      float:left;
+    }
+    ul.domtabs a:link,
+    ul.domtabs a:visited,
+    ul.domtabs a:active,
+    ul.domtabs a:hover{
+      width:8em;
+      padding:.2em ;
+      display:block;
+      background:#666;
+      color:#ccc;
+      height:2em;
+      font-weight:bold;
+      text-decoration:none;
+    }
+    html>body ul.domtabs a:link,
+    html>body ul.domtabs a:visited,
+    html>body ul.domtabs a:active,
+    html>body ul.domtabs a:hover{
+      height:auto;
+      min-height:2em;
+    }
+    ul.domtabs a:hover{
+      background:#696;
+    }
+    div.domtab div{
+      
+      width:auto;
+      background:#696;
+      color:#fff;
+    }
+    ul.domtabs li.active a:link,
+    ul.domtabs li.active a:visited,
+    ul.domtabs li.active a:active,
+    ul.domtabs li.active a:hover{
+      background:#696;
+      color:#fff;
+    }
+    
+    div.domtab div a:link,
+    div.domtab div a:visited,
+    div.domtab div a:active
+    {
+      display:block;
+      padding:1em .5em;
+      font-weight:bold;
+    }
+    div.domtab div h2 a,
+    div.domtab div h2 a:hover,
+    div.domtab div h2 a:active
+    {
+      color:#cfc;
+      display:inline;
+      padding:0;
+      font-weight:normal;
+      font-size:1em;
+    }

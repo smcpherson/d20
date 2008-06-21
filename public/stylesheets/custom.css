@@ -1,0 +1,84 @@
+body {font-size:10pt;}
+h1 {padding-top:.7em; font-size:1.2em;  text-align:center;}
+h2 {margin:0px; font-size:1.2em;}
+INPUT {background-color:#E5F9FF;}
+IMG {border:none;}
+#heading {background-color:black; color:white;}
+#footer_text {text-align:right; font-style:italic;}
+#character_title_heading { display:inline; top:-2em; left:0; position:relative; width:20em; margin-left:auto; margin-right:auto;}
+
+.seperator {clear:both;}
+.smaller {font-size:.7em; }
+.close_bar {background-color:black; color:white; height:1.2em; margin:0px; padding:0px; cursor:pointer;}
+.close_bar P  {font-size:.9em; margin:0px; padding:0px; font-weight:bold; display:inline; float:right; color:#FFBDBD;}
+.close_bar H2 {font-size:.9em; margin:0px; padding:0px; font-weight:bold; display:inline; float:left;}
+.ajax-scaffold H2 {text-align:left;}
+
+/* Toolbar Windows: */
+#tools_container {text-align:right;}
+#dice_roller, #books, #monsters, #scratch, #treasure  {position:absolute; background-color:white; border:2px black outset;}
+#dice_roller {top:20px; right:10px; width:520px; z-index:7;}
+#books       {top:35px; right:10px; width:520px; z-index:8;}
+#monsters    {top:50px; right:10px; width:520px; z-index:9;}
+#treasure    {top:65px; right:10px; width:520px; z-index:10;}
+#scratch     {top:80px; right:10px; width:90%; height:70%; z-index:11;}
+#scratch textarea {width:100%; height:100%; border:2px black solid;}
+
+.monster_handle, .item_handle     {background:url('/images/add.png') no-repeat; width:44px; height:44px;  }
+
+#item_drop   {}
+.item_drop_hover   {color:green !important; background-color:white; border:2px black inset;}
+.character_menu {background-color:#B3FF99; color:white; text-align:right; border-bottom:2px #79FF4D solid;}
+.character_menu SPAN {right:0; position:relative;}
+.menu_on        {background-color:#FFE38F; font-weight:bold; padding-top:10px; border:2px #79FF4D solid;}
+.menu_off       {background-color:#B3FF99;}
+
+#attributes {margin:10px; padding:5px;}
+.attribute {float:left; border:2px black solid; margin:10px; padding:0px;}
+.attribute div {background-color:black; color:white;}
+#abilities {float:left; margin:10px; padding:0px;}
+.ability {float:left; border:2px red solid; margin:10px; padding:0px}
+.ability div {background-color:black; color:white;}
+#abilities table {font-size:.9em; text-align:left;}
+#abilities th    {font-size:.7em; text-align:left;}
+#abilities .title {background-color:black; color:white; text-align:right;}
+
+.monster_serach_results {margin:0; padding:0;}
+.monster_serach_results H3 {margin:0; padding:0;}
+.monster_details           {border:2px green solid;}
+.monster_details LABEL     {font-weight:bold;}
+.monster_result            {border:1px black solid; font-size:.8em;}
+
+.character_form .seperator {margin:10px;}
+.character_form INPUT      {border-bottom:1px black solid;}
+
+.inline_search {background-color:white; position:relative; border:2px #666 outset; margin:0px; padding:0px;}
+.inline_search LI {list-style:none; margin:0; padding:0;}
+.inline_search LI:hover {background-color:yellow; border:1px #FFF outset;}
+
+.form-element INPUT {border:none; border-bottom:1px black solid;}
+
+#abilities_container {width:300px; float:left; border:2px black outset; background-color:white; margin:10px; margin-top:1.2em;}
+#abilities_container INPUT {width:2em;}
+#abilities_container .inplaceeditor-form INPUT {width:2em;} /* Input box */
+#abilities_container .inplaceeditor-form input[type="submit"] {background-color:#DEFFBD;width:4em;}
+#abilities_container .inplaceeditor-form a {background-color:#FFBDBD; width:3em; margin:3px;} /* The cancel link */
+
+.money      .inplaceeditor-form INPUT {width:5em !important;} /* Input box */
+.experience .inplaceeditor-form INPUT {width:5em !important;} /* Input box */
+.hit_points .inplaceeditor-form INPUT {width:4em !important;} /* Input box */
+#record_notes-inplaceeditor TEXTAREA  {height:9em;}
+
+#abilities_container table {font-size:.9em; text-align:left;}
+#abilities_container th    {text-align:left; background-color:white; color:black;}
+#abilities_container td    {background-color:white; color:black;}
+#abilities_container h2    {margin-top:-1.2em; size:.9em; color:#707070;}
+#abilities_container .title {background-color:black; color:white; text-align:right; vertical-align:top; font-weight:bold;}
+#abilities_container .total {font-weight:bold; color:green;}
+#abilities_container .small {font-size:.8em;}
+
+.xp-column INPUT, .hp_max-column INPUT, .hp-column INPUT {width:3em; border:none; background-color:transparent;}
+
+
+/* Active Scaffold Overrides */
+.actions>a:link, .actions>a:visited, .actions>a:active {color:black;}

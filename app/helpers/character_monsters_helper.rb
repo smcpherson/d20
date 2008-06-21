@@ -1,0 +1,2 @@
+module CharacterMonstersHelper
+end
